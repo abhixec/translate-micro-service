@@ -1,4 +1,4 @@
-package com.abhinav.example.PigTranslateTest;
+package com.abhinav.example.translatetest;
 
 import java.util.HashMap;
 import java.util.Map;
