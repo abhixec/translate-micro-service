@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class PigTranslate implements ITranslate {
 
 	public String translate(String input) {
@@ -13,6 +15,9 @@ public class PigTranslate implements ITranslate {
 		Arrays.asList(words).stream().forEach(word ->{
 			if(isVowel(word.charAt(0))){
 				result.add(stringWithVowel(word));
+			}
+			else if(isNotAlphaNumeric(word)){
+				result.add(word);
 			}
 			else{
 				result.add(stringWithOutVowel(word));
@@ -68,7 +73,6 @@ public class PigTranslate implements ITranslate {
 	private static int firstVowelInString(String input) {
 		String vowels = "aeiou";
 		input = input.toLowerCase();
-		int index = 0;
 		for (int i = 0; i < input.length(); i++) {
 			if (vowels.contains(String.valueOf(input.charAt(i)))) {
 				return i;
@@ -76,4 +80,8 @@ public class PigTranslate implements ITranslate {
 		}
 		return -1;
 	}
+	private static boolean isNotAlphaNumeric(String input){
+		return input.matches("[^a-zA-Z0-9]+");
+	}
+	
 }
